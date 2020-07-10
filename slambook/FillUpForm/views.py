@@ -5,17 +5,20 @@ from bson.objectid import ObjectId
 import random
 import pyrebase
 from .forms import GeeksForm
-
+import os
+import dotenv
 # Create your views here.
 #def home(request):
 #    return render(request,"Slamform.html")
+dotenv.load_dotenv()
 
 def thanks(request,id):
     qnum=request.POST["questions"]
     qnum=list(map(int,qnum.split("-")))
     data={}
     data["userid"]=id
-    client=MongoClient("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false")
+    print(os.getenv("mongolink"))
+    client=MongoClient(os.getenv("mongolink"))
     mongodb=client.get_database("Fill_up_form")
     mongocoll=mongodb.questions
     l=list(mongocoll.find({},{"_id":0}).sort("num"))
@@ -40,7 +43,8 @@ def thanks(request,id):
     return render(request,"thanks.html")
 
 def homes(request,id):
-    client=MongoClient("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false")
+    print(os.getenv("mongolink"))
+    client=MongoClient(os.getenv("mongolink"))
     mongodb=client.get_database("Fill_up_form")
     mongocoll=mongodb.users
     if len(id)!=24:
