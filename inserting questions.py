@@ -7,7 +7,7 @@ mongodb=client.get_database("Fill_up_form")
 
 mongocoll=mongodb.slambook
 
-l=list(mongocoll.find({"userid":"5f06ff49c8f4d137b280726b"}))
+l=list(mongocoll.find({}))
 
 print(l)
 #mongocoll.insert_one(data)
