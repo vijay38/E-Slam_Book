@@ -1,10 +1,7 @@
 <!doctype html>
-
-
 <head>
  
   <title>The SLAM BOOK</title>
-
 </head>
 
 <body>
@@ -52,36 +49,33 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 <script>
-   require('dotenv').config()
-   var config = {
-        apiKey: process.env.apiKey,
-        authDomain: process.env.authDomain,
-        databaseURL: process.env.databaseURL,
-        projectId: process.env.projectId,
-        storageBucket: process.env.storageBucket,
-        messagingSenderId: process.env.messagingSenderId,
-        appId: process.env.appId,
-        measurementId: process.env.measurementId
-    };
-  firebase.initializeApp(config);
-  
-  function uploadimage(){
-  var storage = firebase.storage();
-  var file = document.getElementById("files").files[0];
-  var storageRef = storage.ref();
-  var thisref = storageRef.child("data/"+document.getElementById("idid").value+document.getElementById("nameid").value+document.getElementById("dobid").value+".jpg").put(file);
-  thisref.on('state_changed',function(snapshot){
-  },
-  function(error) {
-    console.log(error)
-  },
-  function() {
-  var downloadURL = thisref.snapshot.downloadURL;
-  document.getElementById("url").value = downloadURL;
-  document.getElementById("hide").click()
+var config = {
+    apiKey: "AIzaSyDJmrBPs4jJL-ZE2OWD9Rryzja-BerylcY",
+    authDomain: "e-slam-book.firebaseapp.com",
+    databaseURL: "https://e-slam-book.firebaseio.com",
+    projectId: "e-slam-book",
+    storageBucket: "e-slam-book.appspot.com",
+    messagingSenderId: "601607053655",
+    appId: "1:601607053655:web:73333a2d0812a4caab9e12",
+    measurementId: "G-2NNRT1MT6W"
+};
+firebase.initializeApp(config);
+
+function uploadimage(){
+var storage = firebase.storage();
+var file = document.getElementById("files").files[0];
+var storageRef = storage.ref();
+var thisref = storageRef.child("data/"+document.getElementById("idid").value+document.getElementById("nameid").value+document.getElementById("dobid").value+".jpg").put(file);
+thisref.on('state_changed',function(snapshot){
+},
+function(error) {
+console.log(error)
+},
+function() {
+var downloadURL = thisref.snapshot.downloadURL;
+document.getElementById("url").value = downloadURL;
+document.getElementById("hide").click()
 });
-    }
+}
 </script>
-
-
 </html>
