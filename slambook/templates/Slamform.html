@@ -1,9 +1,15 @@
+{% load static %}
 <!doctype html>
 <head>
  
   <title>The SLAM BOOK</title>
+  <link rel="stylesheet" href="{% static '/css/style1.css' %}">
+  {% if gender == male %}
+  <h1>{{uname}}'s Slambook🔥</h1>
+  {% else %}
+  <h1>{{uname}}'s Slambook💙</h1>
+  {% endif %}
 </head>
-
 <body>
   <form action="/nextstep/{{q12}}" method="post">
   {% csrf_token %}

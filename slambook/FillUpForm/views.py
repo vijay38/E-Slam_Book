@@ -53,6 +53,8 @@ def homes(request,id):
     if userlist==[]:
         return render(request,"invalid.html")
     txn=userlist[0]["txnstatus"]
+    gender=userlist[0]["gender"]
+    uname=userlist[0]["username"]
     if txn==False:
         mongocoll=mongodb.slambook
         count=len(list(mongocoll.find({"userid":id})))
@@ -73,5 +75,8 @@ def homes(request,id):
         c+=1
     display["q11"]=toget[:-1]
     display["q12"]=id
+    display["gender"]=gender
+    display["uname"]=uname
+    display["male"]="male"
     #display['form']=GeeksForm()
     return render(request,"Slamform.html",display)
